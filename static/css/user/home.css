@@ -1,0 +1,411 @@
+
+body {
+    font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #4b0f31;
+    background-color: #f1e5e6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #bed0ea;
+}
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../../img/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
+#header {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    z-index: 9999;
+}
+
+#header ul{
+    /*margin-left: 4%;*/
+    list-style-type:  none;
+    padding: 0;
+    overflow: hidden;
+}
+
+#header ul li {
+    float: left;
+}
+
+#header ul li a {
+    display: block;
+    text-align: center;
+    /*padding: 14px 16px;*/
+    padding-bottom: 14px;
+    padding-top: 14px;
+    text-decoration: none;
+    color: white;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+#header ul li a:hover {
+    background-color: orangered;
+}
+
+#contact-icons {
+    list-style-type:  none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#contact-icons li {
+    float: left;
+    width: 25%;
+    height: 25%;
+    top: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+#contact-icons li img {
+    width: 70%;
+    height: 70%;
+}
+
+.anchor {
+    height: 100vh;
+    min-height: 500px;
+    margin: auto;
+    text-align: center;
+    /*padding-top: 7%;*/
+    padding-bottom: 20px;
+
+}
+
+#about {
+    display: inline;
+}
+
+.anchor h1 {
+    text-align: left;
+    padding-left: 3%;
+    padding-top: 60px;
+}
+
+#projects-ul-container {
+    text-align: left;
+}
+
+#about-column-container {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 3%;
+}
+
+#contact-icons-container {
+    position: relative;
+}
+
+#contact-icons {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, 50%);
+}
+
+#footer {
+    text-align: center;
+    padding-bottom: 12px;
+    height: 5vh;
+}
+
+#projects {
+    height: inherit;
+}
+
+* {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 1em;
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: xx-large;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+
+#about-text {
+    font-size: 18pt;
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+#avatar {
+    border-radius: 350%;
+    /*height: 80%;*/
+    height: auto;
+    width: auto;
+    max-height: 90vh;
+}
+
+.technologies-list img {
+    height: auto;
+    width: auto;
+}
+
+#contact-icons li {
+    border-radius: 100%;
+}
+
+.cd-projects-img img {
+    display: block;
+    width: 36px;
+    height: 36px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    margin-left: -18px;
+    margin-top: -18px;
+}
+
+#about {
+    max-height: 100vh;
+}
+
+.technologies-list li{
+    height: 25%;
+    width: 25%;
+}
+
+.technologies-list {
+    /*margin-left: 5%;*/
+    list-style-type:  none;
+    padding: 0;
+    overflow: hidden;
+    height: 35%;
+}
+
+.technologies-list li {
+    float: left;
+}
+
+.technologies-list li img {
+    padding-top: 10px;
+    height: 25vh;
+}
+
+#contact-icons p, .technologies-list p {
+    text-align: center;
+    padding-top: 10px;
+}
+
+#contact-icons img:hover, .technologies-list li img:hover {
+    transform-style:preserve-3d;
+    transform: rotate3d(-1, 1, 0, 25deg);
+}
+
+/*div#about-column-container {*/
+    /*padding-top: 60px;*/
+/*}*/
+
+h1, h2 {
+    font-size: 2em;
+}
+
+#name {
+    padding-bottom: 0;
+    margin-left: 2%;
+}
+
+p {
+    font-size: 1em;
+}
+
+
+#technologies-container {
+    position: relative;
+    height: 100vh;
+}
+
+.technologies {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, 50%);
+}
+
+@media (max-width: 399px) {
+    #header ul li a {
+        /*padding: 14px 16px;*/
+        padding-bottom: 14px;
+        padding-top: 14px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+}
+
+@media (min-width: 400px) {
+    #header ul li a {
+        padding: 14px 16px;
+    }
+
+    #header ul{
+        margin-left: 4%;
+    }
+}
+
+.checkbox {
+    padding-bottom: 5px;
+}
+
+.button--pipaluk.button--inverted  {
+    color: red;
+}
+
+.submitbutton {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+#container {
+    /*width: 400px;*/
+    /*height: 300px;*/
+    width: 60%;
+    height: 10%;
+    margin: 0 auto;
+    display: inherit;
+    padding-bottom: 25%;
+}
+
+.progressbar-text {
+    padding-top: 40%;
+}
+
+#top {
+    padding-top: 30vh;
+    background-color: #f1e5e6;
+    /*padding-bottom: 40%;*/
+}
+
+#about {
+    padding-top: 5%;
+    display: inherit;
+    height: 50vh;
+}
+
+/*#knowform {*/
+    /*opacity: 0;*/
+
+/*}*/
+
+.anchor {
+    clear: both;
+}
+
+#footer {
+    padding-top: 10%;
+    padding-bottom: 2%;
+}
+
+.checkbox div {
+    display: inline-block;
+}
+
+#result {
+    font-size: 2rem;
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+
+#input-form {
+    padding-top: 5%;
+}
+
+#repeaticon {
+    height: 65%;
+    width: 65%;
+}
+
+#again {
+    /*margin: 0 auto;*/
+}
+
+#archimg {
+    width: 80%;
+    height: auto;
+}
+
+#about p, #about img, #tech-anch p {
+    font-size: 1.3rem;
+    padding: 2% 0;
+    /*color: #5e382f;*/
+    color: #1f1f1f;
+}
+
+#about {
+    /*background-color: #a0f4f0;*/
+    background-color: #bed0ea;
+    width: 100%;
+    padding: 0 5%;
+    height: inherit;
+    /*padding: 0 0;*/
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.row {
+    width: 100%;
+}
+.vertical-left-line {
+    border-left: 1px #4f4f4f solid;
+}
+
+#headerH {
+    width: 100%;
+}
+
+a {
+    color: #23527c;
+}
+
+
+.anchor h1 {
+    color: #333;
+    text-align: center;
+    padding-bottom: 2em;
+}
+
+@media (max-width: 959px) {
+    .vertical-right-line{
+        border: none;
+    }
+}
+
+.clear {
+    clear: both;
+}
+
+.icon-tech img {
+    /*width: auto;*/
+    height: 30vh;
+}
+
+#tech-anch {
+    background-color: #cedf9b;
+    height: 20vh;
+}
+
+#tech-anch p {
+    margin-top: 3vh;
+}
+
+
+

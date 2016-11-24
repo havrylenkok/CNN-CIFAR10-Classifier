@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Classify object on photo</title>
+    <!--CSS-->
+
+    <!--bootstrap-->
+    <link rel="stylesheet" type="text/css" href="./../static/css/bootstrap.min.css">
+    <!-- CSS reset -->
+    <link rel="stylesheet" href="./../static/css/reset.css">
+    <!--iCheck-->
+    <link rel="stylesheet" href="./../static/css/square/red.css">
+    <!-- Resource style -->
+    <link rel="stylesheet" href="./../static/css/style.css">
+    <!--Header-->
+    <link rel="stylesheet" href="./../static/css/user/header.css">
+    <!--users-->
+
+    <link rel="stylesheet" type="text/css" href="./../static/css/user/component.css">
+    <link rel="stylesheet" type="text/css" href="./../static/css/user/buttons.css">
+    <link rel="stylesheet" type="text/css" href="./../static/css/user/home.css">
+
+    <!--scripts-->
+
+    <!--jquery-->
+    <script type="text/javascript" src="./../static/js/jquery-3.1.1.min.js"></script>
+    <!--bootstrap-->
+    <script type="text/javascript" src="./../static/js/bootstrap.min.js"></script>
+    <!--Modernizr-->
+    <script src="./../static/js/modernizr.js"></script>
+    <!--Resource jQuery-->
+    <script src="./../static/js/main.js"></script>
+    <!--iCheck-->
+    <script src="./../static/js/icheck.js"></script>
+    <!--ProgressBarJS-->
+    <script type="text/javascript" src="./../static/js/progressbar.min.js"></script>
+    <!--Header-->
+    <script type="text/javascript" src="./../static/js/classie.js"></script>
+    <script type="text/javascript" src="./../static/js/cbpAnimatedHeader.js"></script>
+    <script type="text/javascript" src="./../static/js/jquery.form.js"></script>
+    <!--users-->
+    <script type="text/javascript" src="./../static/js/user/home.js"></script>
+    <script type="text/javascript" src="./../static/js/user/custom-file-input.js"></script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<div class="loader"></div>
+<div id="headerH" class="cbp-af-header">
+    <div class="cbp-af-inner">
+        <h1>NN Classifier</h1>
+        <nav id="myNavbar">
+            <a href="#top">Classify</a>
+            <a href="#about">About</a>
+            <a href="#tech-anch">Tech</a>
+        </nav>
+    </div>
+</div>
+<div id="top" class="anchor">
+    <div id="input-form">
+        <form action="http://127.0.0.1:5000/upload" method=post enctype=multipart/form-data >
+            <div id="upload-input">
+                <input type="file" name="file" id="file" class="inputfile inputfile-4"/>
+                <label for="file">
+                    <figure>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
+                            <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/>
+                        </svg>
+                    </figure>
+                    <span id="file-status">Choose a file&hellip;</span></label>
+                <div class="checkbox">
+                    <div id="radioknow">
+                        <label for="know">&nbsp;&nbsp;&nbsp;I do know what's on image <input class="radio" id="know"
+                                                                                             type="radio" name="doknow"
+                                                                                             value="know"></label>
+                    </div>
+                    <div><label for="dontknow"><input class="radio" id="dontknow" type="radio" name="doknow"
+                                                      value="dont"
+                                                      checked> I
+                        don't know what's on image </label>
+                    </div>
+                </div>
+                <div id="knowform">
+                    <select name="first-class" id="first-class">
+                        <option value="0">Airplane</option>
+                        <option value="1">Automobile</option>
+                        <option value="2">Bird</option>
+                        <option value="3">Cat</option>
+                        <option value="4">Deer</option>
+                        <option value="5">Dog</option>
+                        <option value="6">Frog</option>
+                        <option value="7">Horse</option>
+                        <option value="8">Ship</option>
+                        <option value="9">Truck</option>
+                    </select>
+                    <span> or </span>
+                    <select name="second-class" id="second-class">
+                        <option value="0">Airplane</option>
+                        <option value="1">Automobile</option>
+                        <option value="2">Bird</option>
+                        <option value="3">Cat</option>
+                        <option value="4">Deer</option>
+                        <option value="5">Dog</option>
+                        <option value="6">Frog</option>
+                        <option value="7">Horse</option>
+                        <option value="8">Ship</option>
+                        <option value="9">Truck</option>
+                    </select>
+                </div>
+            </div>
+            <div class="submitbutton">
+                <!--<button type="submit" -->
+                <button type="button"
+                        id="sbm"
+                        class="button button--pipaluk button--inverted  button--round-s button--text-thick">
+                    Classify!
+                </button>
+            </div>
+        </form>
+    </div>
+    <div id="container"></div>
+    <div id="result"><p id="resp">Congratulation! Neural network successfully classified your image.</p>
+        <p>It's a <span
+                id="result-span">TEMPLATE</span>.</p>
+    </div>
+    <div id="animate-classify"></div>
+    <div class="submitbutton">
+        <button type="button"
+                id="again"
+                class="button button--pipaluk button--inverted  button--round-s button--text-thick">
+            <img id="repeaticon" src="../static/img/repeat.jpg">Again?
+        </button>
+    </div>
+    <div class="clear"><!-- --></div>
+</div>
+<div id="about" class="anchor">
+    <div>
+        <h1>About this project</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6"><img id="archimg" src="../static/img/acccnn.jpg">
+            <p>Picture was genereted by TensorBoard based on logs from learning.</p></div>
+        <div class="col-md-6 vertical-left-line"><p>This classifier uses convolutional neural network trained on 10
+            classes from CIFAR 10
+            data set. Project was built as a part of the course work at KSPU university. You can read it <a href="#">here
+                (ukrainian)</a>.
+        </p>
+            <br>
+            <p> Convolutional Neural network uses 10 layer architecture. Starting from input, then Conv, MaxPool,
+                Conv, Conv, MaxPool, FullyConn, Dropout, FullyConn, Crossentropy and output. You can see accuracy on
+                training
+                set on the illustration.</p>
+            <br>
+            <p>If
+                you need yo use server behind
+                this project for your needs to classify image, then you can use API.
+                Just POST image and options to <a href="">/upload</a>. All the source code, including neural network
+                built with TFlearn, server built with Flask and front-end built with pure JS you can find, view and
+                use on <a href="https://github.com/robben1234">github</a>.
+            </p>
+        </div>
+    </div>
+    <div class="clear"><!-- --></div>
+</div>
+<div class="anchor" id="tech-anch">
+    <h1 id="tech">See technologies that helped to build this app:</h1>
+    <div class="row">
+        <div class="col-md-4 icon-tech"><a href="http://tensorflow.org"><img src="../static/img/tflogo.png"><p>Tensorflow
+        </p></a></div>
+        <div class="col-md-4 icon-tech"><a href="http://flask.pocoo.org/"><img src="../static/img/flasklogo.png"><p>Flask
+        </p></a></div>
+        <div class="col-md-4 icon-tech"><a href="https://www.ecma-international.org/"><img src="../static/img/jslogo.png"><p>JS
+        </p></a></div>
+
+    </div>
+    <p>2016 Kyrylo Havrylenko</p>
+    <div class="clear"><!-- --></div>
+</div>
+</body>
+</html>
