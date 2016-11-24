@@ -5,6 +5,7 @@ from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.estimator import regression
 from tflearn.data_preprocessing import ImagePreprocessing
 from tflearn.data_augmentation import ImageAugmentation
+import os
 import numpy as np
 
 
@@ -22,7 +23,7 @@ def read_img_crop(img_file):
     print((img_arr == imgarr2).all())
     return img_arr
 
-def predict(img):
+def predict(img, root):
 
     img_prep = ImagePreprocessing() # Real-time data preprocessing
     img_prep.add_featurewise_zero_center()
@@ -52,8 +53,8 @@ def predict(img):
 
     # Train using classifier
     model = tflearn.DNN(network, tensorboard_verbose=0)
-    model.load("cnncifar10first.tfl")
+    model.load(os.path.join(root, "cnncifar10first.tfl"))
 
     image = read_img_crop(img)
     pred = model.predict(image)
-    return (pred[0]),(np.argmax(pred) + 1)
+    return pred[0],np.argmax(pred)
