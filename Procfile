@@ -1,1 +1,1 @@
-web: gunicorn image-classifier:app
+web: gunicorn image-classifier:app --log-file=-
