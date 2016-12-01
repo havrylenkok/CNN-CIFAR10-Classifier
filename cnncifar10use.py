@@ -1,3 +1,4 @@
+import scipy
 import tflearn
 from tflearn.data_utils import shuffle, to_categorical
 from tflearn.layers.core import input_data, dropout, fully_connected
@@ -8,37 +9,23 @@ from tflearn.data_augmentation import ImageAugmentation
 import os
 import numpy as np
 
-
 def read_img_crop(img_file):
-    from PIL import Image, ImageOps
-    import numpy as np
-    img = Image.open(img_file).convert('RGB')
-    img = ImageOps.fit(img, ((32, 32)), Image.ANTIALIAS)
+    # from PIL import Image, ImageOps
+    # img = Image.open(img_file).convert('RGB')
+    # img = ImageOps.fit(img, ((32, 32)), Image.ANTIALIAS)
+    # img_arr = np.array(img)
+    # imgarr2 = img_arr
+    # assert img_arr.shape == ((32, 32, 3)), "expected (32,32,3)"
+    # img_arr = img_arr.reshape(1, 32, 32, 3).astype("float")  # .transpose(0,3,1,2)\
 
-    img_arr = np.array(img)
-    imgarr2 = img_arr
-
-    assert img_arr.shape == ((32, 32, 3)), "expected (32,32,3)"
-    img_arr = img_arr.reshape(1, 32, 32, 3).astype("float")  # .transpose(0,3,1,2)\
-    print((img_arr == imgarr2).all())
-    return img_arr
+    image = scipy.ndimage.imread(img_file, mode='RGB')
+    image_arr = scipy.misc.imresize(image, (32, 32), interp='bicubic').astype(np.float32, casting='unsafe')
+    return image_arr
 
 def predict(img, root):
 
-    img_prep = ImagePreprocessing() # Real-time data preprocessing
-    img_prep.add_featurewise_zero_center()
-    img_prep.add_featurewise_stdnorm()
-
-    # Real-time data augmentation
-    img_aug = ImageAugmentation()
-    img_aug.add_random_flip_leftright()
-    img_aug.add_random_rotation(max_angle=25.)
-
-    # Convolutional network building
-    network = input_data(shape=[None, 32, 32, 3],
-                         data_preprocessing=img_prep,
-                         data_augmentation=img_aug
-                         )
+    # cnn
+    network = input_data(shape=[None, 32, 32, 3])
     network = conv_2d(network, 32, 3, activation='relu')
     network = max_pool_2d(network, 2)
     network = conv_2d(network, 64, 3, activation='relu')
@@ -53,8 +40,18 @@ def predict(img, root):
 
     # Train using classifier
     model = tflearn.DNN(network, tensorboard_verbose=0)
-    model.load(os.path.join(root, "cnncifar10first.tfl"))
-
+    model.load(os.path.join(root, "cnncifar10.tfl"))
     image = read_img_crop(img)
-    pred = model.predict(image)
+    pred = model.predict([image])
+    model = None
     return pred[0],np.argmax(pred)
+
+import sys
+
+if len(sys.argv) > 1:
+    path_to_img = sys.argv[1]
+    (p),(pm) = predict(path_to_img, "./")
+    classes = ['plane','car','bird','cat','deer','dog','frog','horse','ship','truck']
+    print classes[pm]
+else:
+    print "Usage: python cnncifar10use.py path_to_image_file"
