@@ -28,20 +28,25 @@ network = input_data(shape=[None, 32, 32, 3],
                      data_preprocessing=img_prep,
                      data_augmentation=img_aug)
 network = conv_2d(network, 32, 3, activation='relu')
+network = conv_2d(network, 32, 3, activation='relu')
 network = max_pool_2d(network, 2)
 network = conv_2d(network, 64, 3, activation='relu')
 network = conv_2d(network, 64, 3, activation='relu')
 network = max_pool_2d(network, 2)
-network = fully_connected(network, 512, activation='relu')
+network = conv_2d(network, 128, 3, activation='relu')
+network = conv_2d(network, 128, 3, activation='relu')
+network = max_pool_2d(network, 2)
+network = fully_connected(network, 1024, activation='relu')
 network = dropout(network, 0.5)
 network = fully_connected(network, 10, activation='softmax')
 network = regression(network, optimizer='adam',
                      loss='categorical_crossentropy',
                      learning_rate=0.001)
 
+
 # train
-model = tflearn.DNN(network, tensorboard_verbose=0)
-model.fit(X, Y, n_epoch=70, shuffle=True, validation_set=(X_test, Y_test),
+model = tflearn.DNN(network, tensorboard_verbose=3)
+model.fit(X, Y, n_epoch=85, shuffle=True, validation_set=(X_test, Y_test),
           show_metric=True, batch_size=96, run_id='cifar10_cnn')
-model.save("cnncifar10.tfl")
+model.save("cnncifar10newlife.tfl")
 
