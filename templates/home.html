@@ -137,7 +137,7 @@
         <h1>About this project</h1>
     </div>
     <div class="row">
-        <div class="col-md-6"><img id="archimg" src="../static/img/acccnn.jpg">
+        <div class="col-md-6"><img id="archimg" src="../static/img/accnn.png">
             <p>Picture was genereted by TensorBoard based on logs from learning.</p></div>
         <div class="col-md-6 vertical-left-line"><p>This classifier uses convolutional neural network trained on 10
             classes from CIFAR 10
@@ -145,13 +145,12 @@
                 (ukrainian)</a>.
         </p>
             <br>
-            <p> Convolutional Neural network uses 10 layer architecture. Starting from input, then Conv, MaxPool,
-                Conv, Conv, MaxPool, FullyConn, Dropout, FullyConn, Crossentropy and output. You can see accuracy on
-                training
-                set on the illustration.</p>
+            <p> Convolutional Neural network uses 13 layer VGG architecture. Details on architecture can be read in the paper
+                <a href="https://arxiv.org/pdf/1409.1556.pdf">Very deep convolutional networks for large-scale image recognition</a>. You can see the accuracy on validation data
+                on the illustration.</p>
             <br>
             <p>If
-                you need yo use server behind
+                you need to use server behind
                 this project for your needs to classify image, then you can use API.
                 Just POST image and options to <a href="">/upload</a>. All the source code, including neural network
                 built with TFlearn, server built with Flask and front-end built with pure JS you can find, view and
